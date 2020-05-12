@@ -1,0 +1,95 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+} 
+
+#root {
+	width: 100%;
+  height: 100%;
+} 
+
+.App {
+	width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  width: 800px;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #d9d9d9;
+  box-sizing: content-box;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.form-input, .form-output {
+	width: 50%;
+	box-sizing: border-box;
+	padding: 30px;
+}
+
+.form-input-field {
+  width: 100%;
+  margin-bottom: 30px
+}
+
+.form-input-field:last-child {
+	margin-bottom: 0;
+}
+
+.form-input-field-comment {
+	padding-top: 5px;
+}
+
+.form-output { 
+	background-color: #f5f5f5;
+}
+
+.form-output-item {
+	margin-bottom: 30px;
+	font-size: 18px;
+}
+
+.form-output-item:last-child {
+	margin-bottom: 0;
+} 
+
+.form-output-item-value {
+	font-size: 28px;
+	font-weight: bold;
+	color: #2196f3;
+	overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 42px;
+}
+
+@media screen and (max-width: 840px) {
+	.App {
+		align-items: flex-start;
+	}
+
+	.content {
+		width: 100%;
+		padding: 30px;
+		box-sizing: border-box;
+	}
+
+	.form {
+		width: 100%;
+	  flex-direction: column;
+	}
+
+	.form-input {
+		width: 100%;
+	}
+
+	.form-output {
+		width: 100%;
+		min-height: 268px;
+	}
+}
+
