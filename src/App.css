@@ -54,10 +54,6 @@ body {
 	font-size: 18px;
 }
 
-.form-output-item:last-child {
-	margin-bottom: 0;
-} 
-
 .form-output-item-value {
 	font-size: 28px;
 	font-weight: bold;

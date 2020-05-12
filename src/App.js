@@ -1,5 +1,7 @@
 import React from 'react';
-import { Select, Input } from 'antd';
+import { Select, Input, Button } from 'antd';
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
 
 import './App.css';
 import 'antd/dist/antd.css';
@@ -7,6 +9,7 @@ import 'antd/dist/antd.css';
 import { deposits } from './depcalc.json';
 
 const { Option } = Select;
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 export class App extends React.Component {
   constructor(props) {
@@ -101,6 +104,72 @@ export class App extends React.Component {
     })
   }
 
+  onSave = () => {
+    const docDefinition = {
+      pageSize: 'A4',
+      pageMargins: 40,
+      pageOrientation: 'portrait',
+      content: [
+        { 
+          text: 'Депозитный калькулятор', 
+          fontSize: 20, 
+          margin: [0, 0, 0, 30] 
+        },{ 
+          text: [
+            'Тип вклада: ',
+            { 
+              text: this.state.options.name, 
+              bold: true 
+            },
+            '.',
+          ], 
+          margin: [0, 0, 0, 10]
+        },{ 
+          text: [
+            'Период: ',
+            { 
+              text: this.state.period, 
+              bold: true 
+            },
+            ' дней.',
+          ], 
+          margin: [0, 0, 0, 10]
+        }, {
+          text: [
+            'Сумма: ',
+            { 
+              text: this.state.summ, 
+              bold: true 
+            },
+            ' рублей.',
+          ], 
+          margin: [0, 0, 0, 20]
+        }, {
+          text: [
+            'Процентная ставка: ',
+            { 
+              text: this.state.rate, 
+              bold: true 
+            },
+            '%.',
+          ], 
+          margin: [0, 0, 0, 10]
+        }, { 
+          text: [
+            'Доход: ',
+            { 
+              text: this.state.income, 
+              bold: true 
+            },
+            ' рублей.',
+          ]
+        }
+      ]
+    }
+
+    pdfMake.createPdf(docDefinition).open();
+  }
+
   render() {
     return (
       <div className="App">
@@ -159,8 +228,15 @@ export class App extends React.Component {
                   {this.state.summ >= this.state.minSumm && `${this.state.income} рублей`}
                 </div>
               </div>
+
+              {this.state.income && <Button 
+                  type="primary"
+                  onClick={this.onSave}
+                >
+                  Сохранить как PDF файл
+                </Button>
+              }
             </div>
-            
           </div>
         </div>
       </div>
