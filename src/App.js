@@ -218,7 +218,7 @@ export class App extends React.Component {
               <div className="form-output-item">
                 <div className="form-output-item-label">Процентная ставка: </div>
                 <div className="form-output-item-value">
-                  {this.state.period >= this.state.minPeriod && `${this.state.rate}%`}
+                  {this.state.summ >= this.state.minSumm && `${this.state.rate}%`}
                 </div>
               </div> 
               
